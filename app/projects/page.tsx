@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Pagination from "@/components/Pagination";
 import data from "../../data/fund.json";
 import Link from "next/link";
@@ -31,13 +31,14 @@ function getData() {
 const Projects: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(9);
-  const [selectedStatus, setSelectedStatus] = useState("active"); // State to hold the selected status
+  const [selectedStatus, setSelectedStatus] = useState("active");
+  const [searchTerm, setSearchTerm] = useState("");
 
   const projectData = getData().filter((project) => {
-    if (selectedStatus === "active") return project.status === "active";
-    if (selectedStatus === "upcoming") return project.status === "upcoming";
-    if (selectedStatus === "done") return project.status === "done";
-    return true; // Default case to handle unexpected values
+    return (
+      (selectedStatus === "all" || project.status === selectedStatus) &&
+      project.project_name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
   });
 
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -46,61 +47,94 @@ const Projects: React.FC = () => {
 
   const totalPages = Math.ceil(projectData.length / itemsPerPage);
 
+  useEffect(() => {
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages > 0 ? totalPages : 1);
+    }
+  }, [totalPages, currentPage]);
+
   return (
     <>
-      <div className="w-full bg-black text-white py-[5rem] px-[2rem]">
+      <div className="w-full h-full bg-black text-white py-[5rem] px-[2rem]">
         <div className="text-center my-10 text-4xl font-bold">
           Explore Projects
         </div>
-        <div className="text-end my-[3rem]">
+        <div className="w-full my-[3rem] flex flex-row gap-4 justify-end">
+          <label className="input input-bordered flex items-center gap-2 bg-black border border-white w-full">
+            <input
+              type="text"
+              className="text-white grow w-full"
+              placeholder="Search"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              className="h-4 w-4 opacity-70 text-white"
+            >
+              <path
+                fillRule="evenodd"
+                d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </label>
           <select
             className="select select-bordered w-[8rem] bg-black text-white border border-white outline-none"
             value={selectedStatus}
             onChange={(e) => setSelectedStatus(e.target.value)}
           >
-            <option value="active">active</option>
-            <option value="upcoming">upcoming</option>
-            <option value="done">done</option>
+            <option value="all">All</option>
+            <option value="active">Active</option>
+            <option value="upcoming">Upcoming</option>
+            <option value="done">Done</option>
           </select>
         </div>
         <div className="w-full flex flex-wrap gap-5 justify-evenly">
-          {currentItems.map((project) => (
-            <Link
-              href={`/projects/${project.id}`}
-              className="w-[350px] group relative block overflow-hidden rounded-lg shadow-lg transition duration-500 hover:shadow-xl text-white border border-white"
-              key={project.id}
-            >
-              <img
-                src={project.project_image}
-                alt={project.project_name}
-                className="h-64 w-full object-cover transition duration-500 group-hover:scale-105 sm:h-72"
-              />
+          {currentItems.length > 0 ? (
+            currentItems.map((project) => (
+              <Link
+                href={`/projects/${project.id}`}
+                className="w-[350px] group relative block overflow-hidden rounded-lg shadow-lg transition duration-500 hover:shadow-xl text-white border border-white my-5"
+                key={project.id}
+              >
+                <img
+                  src={project.project_image}
+                  alt={project.project_name}
+                  className="h-64 w-full object-cover transition duration-500 group-hover:scale-105 sm:h-72"
+                />
 
-              <div className="relative bg-black p-6 text-white">
-                <span className="whitespace-nowrap badge badge-secondary px-3 py-1.5 text-xs font-medium">
-                  {" "}
-                  {project.status}{" "}
-                </span>
+                <div className="relative bg-black p-6 text-white">
+                  <span className="whitespace-nowrap badge badge-secondary px-3 py-1.5 text-xs font-medium">
+                    {project.status}
+                  </span>
 
-                <h3 className="mt-4 text-lg font-medium">
-                  {project.project_name}
-                </h3>
+                  <h3 className="mt-4 text-lg font-medium">
+                    {project.project_name}
+                  </h3>
 
-                <p className="mt-1.5 text-sm">$ {project.amount_for_raise}</p>
+                  <p className="mt-1.5 text-sm">$ {project.amount_for_raise}</p>
 
-                <div className="card-actions justify-end">
-                  <div className="badge badge-outline flex gap-2">
-                    <HiCreditCard />
-                    {project.carbon_credits}
-                  </div>
-                  <div className="badge badge-outline flex gap-2">
-                    <FaLocationDot />
-                    {project.location}
+                  <div className="card-actions justify-end">
+                    <div className="badge badge-outline flex gap-2">
+                      <HiCreditCard />
+                      {project.carbon_credits}
+                    </div>
+                    <div className="badge badge-outline flex gap-2">
+                      <FaLocationDot />
+                      {project.location}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            ))
+          ) : (
+            <div className="h-screen flex flex-col justify-center items-center text-3xl font-bold">
+              Project Not Found
+            </div>
+          )}
         </div>
         <div className="text-center mt-[3rem]">
           <Pagination
