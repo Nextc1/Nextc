@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import Pagination from "@/components/Pagination";
 import data from "../../data/fund.json";
 import Link from "next/link";
-import { HiCreditCard } from "react-icons/hi2";
-import { FaLocationDot } from "react-icons/fa6";
+// import { HiCreditCard } from "react-icons/hi2";
+// import { FaLocationDot } from "react-icons/fa6";
 
 interface Project {
   id: string;
@@ -119,11 +119,11 @@ const Projects: React.FC = () => {
 
                   <div className="card-actions justify-end">
                     <div className="badge badge-outline flex gap-2">
-                      <HiCreditCard />
+                      {/* <HiCreditCard /> */}
                       {project.carbon_credits}
                     </div>
                     <div className="badge badge-outline flex gap-2">
-                      <FaLocationDot />
+                      {/* <FaLocationDot /> */}
                       {project.location}
                     </div>
                   </div>
