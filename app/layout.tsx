@@ -21,13 +21,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={GeistSans.className}>
       <body>
-        <div className="relative w-full flex items-center justify-center">
-          <Header className="top-6" />
-        </div>
+        <Header />
         {children}
-        <div>
-          <Footer />
-        </div>
+        <Footer />
       </body>
     </html>
   );
