@@ -1,37 +1,99 @@
-"use client";
-import React, { useState } from "react";
-import {
-  HoveredLink,
-  Menu,
-  MenuItem,
-  ProductItem,
-} from "../components/ui/navbar-menu";
-import { cn } from "@/utils/cn";
+'use client';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { supabase } from '@/utils/supabase';
+import { Session } from 'inspector';
 
-export default function Header({ className }: { className?: string }) {
-  const [active, setActive] = useState<string | null>(null);
+const Header = () => {
+  const [isSignedIn, setIsSignedIn] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    const checkUser = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      setIsSignedIn(!!session);
+    };
+    checkUser();
+  }, []);
+
+  const handleSignIn = () => {
+    router.push('/api/auth/signin');
+  };
+
+  const handleSignUp = () => {
+    router.push('/api/auth/signup');
+  };
+
+  const handleProfile = () => {
+    router.push('/profile');
+  };
+
+  const handleLogout = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (!error) {
+      // Clear the access token from local storage
+      localStorage.removeItem('access_token');
+      setIsSignedIn(false);
+      router.push('/');
+    } else {
+      console.error(error.message);
+    }
+  };
+
   return (
-    <div
-      className={cn("fixed top-10 inset-x-0 max-w-2xl mx-auto z-50", className)}
-    >
-      <Menu setActive={setActive}>
-        <MenuItem setActive={setActive} active={active} item="Services">
-          <div className="flex flex-col space-y-4 text-sm">
-            <HoveredLink href="/web-dev">Web Development</HoveredLink>
-            <HoveredLink href="/interface-design">Interface Design</HoveredLink>
-            <HoveredLink href="/seo">Search Engine Optimization</HoveredLink>
-            <HoveredLink href="/branding">Branding</HoveredLink>
+      <div className="navbar bg-black flex">
+        <div className="flex-1">
+          <a className="btn btn-ghost text-xl">Next Carbon</a>
+        </div>
+        <div className="flex-none gap-2">
+          <div className="form-control">
+            <input
+              type="text"
+              placeholder="Search projects, companies"
+              className="input input-bordered w-24 md:w-auto"
+            />
           </div>
-        </MenuItem>
-        <MenuItem setActive={setActive} active={active} item="Pricing">
-          <div className="flex flex-col space-y-4 text-sm">
-            <HoveredLink href="/hobby">Hobby</HoveredLink>
-            <HoveredLink href="/individual">Individual</HoveredLink>
-            <HoveredLink href="/team">Team</HoveredLink>
-            <HoveredLink href="/enterprise">Enterprise</HoveredLink>
-          </div>
-        </MenuItem>
-      </Menu>
-    </div>
+          {isSignedIn ? (
+            <div className="dropdown dropdown-end">
+              <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                <div className="w-10 rounded-full">
+                  <img
+                    alt="User Profile"
+                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                  />
+                </div>
+              </div>
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              >
+                <li>
+                  <a onClick={handleProfile} className="justify-between">
+                    Profile
+                  </a>
+                </li>
+                <li>
+                  <a onClick={handleLogout}>Logout</a>
+                </li>
+                <li>
+                  <a>Wallet</a>
+                </li>
+              </ul>
+            </div>
+          ) : (
+            <div className="flex gap-2">
+              <button onClick={handleSignIn} className="btn btn-primary">
+                Sign In
+              </button>
+              <button onClick={handleSignUp} className="btn btn-secondary">
+                Sign Up
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+
   );
-}
+};
+
+export default Header;
