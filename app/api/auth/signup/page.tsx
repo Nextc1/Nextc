@@ -353,9 +353,10 @@ const SignUp = () => {
                     if (insertError) {
                         setError('An error occurred while saving user details. Please try again.');
                         console.error(insertError);
+                        // add check ur mail and confirm ------------------------------------------------------
                     } else if (data.session) {
                         localStorage.setItem('access_token', data.session.access_token);
-                        router.push('/kyc');
+                        router.push('/');
                     }
                 }
             }
@@ -366,26 +367,23 @@ const SignUp = () => {
             setLoading(false);
         }
     };
+
     const handleGoogleSignIn = async () => {
         setLoading(true);
         try {
-            // Trigger Google OAuth sign-in
             const { error } = await supabase.auth.signInWithOAuth({
                 provider: 'google',
             });
-    
+
             if (error) {
                 throw error;
             }
-    
-            // Handle authentication state change
+
             supabase.auth.onAuthStateChange(async (event, session) => {
                 if (event === 'SIGNED_IN' && session) {
                     const user = session.user;
-    
-                    // Log the user ID
-                    console.log( user.id);
-    
+                    console.log('User Metadata:', user.user_metadata);
+                    
                     // Insert or update user details in the users table
                     const { error: insertError } = await supabase
                         .from('users')
@@ -394,9 +392,9 @@ const SignUp = () => {
                             first_name: user.user_metadata?.first_name || '',
                             last_name: user.user_metadata?.last_name || '',
                             email: user.email,
-                            country: user.user_metadata?.country || ''
+                            profile_picture_url: user.user_metadata?.picture || ''
                         });
-    
+            
                     if (insertError) {
                         setError('An error occurred while saving user details. Please try again.');
                         console.error(insertError);
@@ -406,6 +404,7 @@ const SignUp = () => {
                     }
                 }
             });
+            
         } catch (err) {
             setError('An unexpected error occurred. Please try again later.');
             console.error(err);
@@ -413,7 +412,56 @@ const SignUp = () => {
             setLoading(false);
         }
     };
-    
+
+
+    // const handleGoogleSignIn = async () => {
+    //     setLoading(true);
+    //     try {
+    //         // Trigger Google OAuth sign-in
+    //         const { error } = await supabase.auth.signInWithOAuth({
+    //             provider: 'google',
+    //         });
+
+    //         if (error) {
+    //             throw error;
+    //         }
+
+    //         // Handle authentication state change
+    //         supabase.auth.onAuthStateChange(async (event, session) => {
+    //             if (event === 'SIGNED_IN' && session) {
+    //                 const user = session.user;
+
+    //                 // Log the user ID
+    //                 console.log( user.id);
+
+    //                 // Insert or update user details in the users table
+    //                 const { error: insertError } = await supabase
+    //                     .from('users')
+    //                     .upsert({
+    //                         id: user.id,
+    //                         first_name: user.user_metadata?.first_name || '',
+    //                         last_name: user.user_metadata?.last_name || '',
+    //                         email: user.email,
+    //                         country: user.user_metadata?.country || ''
+    //                     });
+
+    //                 if (insertError) {
+    //                     setError('An error occurred while saving user details. Please try again.');
+    //                     console.error(insertError);
+    //                 } else {
+    //                     localStorage.setItem('access_token', session.access_token);
+    //                     router.push('/');
+    //                 }
+    //             }
+    //         });
+    //     } catch (err) {
+    //         setError('An unexpected error occurred. Please try again later.');
+    //         console.error(err);
+    //     } finally {
+    //         setLoading(false);
+    //     }
+    // };
+
 
     const navigateToSignIn = () => {
         router.push('/api/auth/signin');
