@@ -13,6 +13,7 @@
     "@tabler/icons-react": "^3.11.0",
     "autoprefixer": "10.4.17",
     "clsx": "^2.1.1",
+    "create-next-app": "^14.2.5",
     "framer-motion": "^11.3.8",
     "geist": "^1.2.1",
     "next": "latest",
