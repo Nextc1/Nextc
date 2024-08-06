@@ -1,5 +1,7 @@
 "use client";
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { supabase } from "@/utils/supabase";
 import {
   HoveredLink,
   Menu,
@@ -9,32 +11,77 @@ import {
 import { cn } from "@/utils/cn";
 import Link from "next/link";
 
-export default function Header({ className }: { className?: string }) {
+const Header = ({ className }: { className?: string }) => {
+  const [isSignedIn, setIsSignedIn] = useState(false);
+  const [profilePic, setProfilePic] = useState<string | null>(null);
   const [active, setActive] = useState<string | null>(null);
-  return (
-    <div
-      className={cn("fixed top-10 inset-x-0 max-w-xl mx-auto z-50", className)}
-    >
-      <Menu setActive={setActive}>
-        <Link href="/">Home</Link>
-        <Link href="/projects">Projects</Link>
+  const router = useRouter();
 
-        <Link href="/signup">Sign In</Link>
-      </Menu>
+  useEffect(() => {
+    const checkUser = async () => {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+      if (session) {
+        setIsSignedIn(true);
+        const { data: userData, error } = await supabase
+          .from("users")
+          .select("profile_picture_url")
+          .eq("id", session.user.id)
+          .single();
+
+        if (userData) {
+          setProfilePic(userData.profile_picture_url || "/default-profile.png");
+        } else {
+          console.error(error.message);
+        }
+      } else {
+        setIsSignedIn(false);
+      }
+    };
+    checkUser();
+  }, []);
+
+  const handleLogout = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (!error) {
+      // Clear the access token from local storage
+      localStorage.removeItem("access_token");
+      setIsSignedIn(false);
+      setProfilePic(null);
+      router.push("/");
+    } else {
+      console.error(error.message);
+    }
+  };
+
+  return (
+    <div className="navbar bg-black flex">
+      <div
+        className={cn(
+          "fixed top-10 inset-x-0 max-w-xl mx-auto z-50",
+          className
+        )}
+      >
+        <Menu setActive={setActive}>
+          <Link href="/">Home</Link>
+          {isSignedIn ? (
+            <>
+              <Link href="/profile">Profile</Link>
+              <p className="cursor-pointer" onClick={handleLogout}>
+                Logout
+              </p>
+            </>
+          ) : (
+            <>
+              <Link href="/api/auth/signin">Sign In</Link>
+              <Link href="/api/auth/signup">Sign Up</Link>
+            </>
+          )}
+        </Menu>
+      </div>
     </div>
   );
-}
+};
 
-// Ye sirf logged in users ke liye hoga
-
-{
-  /* <Link href="/profile">Profile</Link> */
-}
-{
-  /* <MenuItem setActive={setActive} active={active} item="Profile">
-  <div className="flex flex-col space-y-4 text-sm">
-    <HoveredLink href="/my-profile">My Profile</HoveredLink>
-    <HoveredLink href="/project-invested">Project Invested</HoveredLink>
-  </div>
-</MenuItem> */
-}
+export default Header;
