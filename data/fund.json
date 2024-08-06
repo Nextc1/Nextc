@@ -8,11 +8,13 @@
     "amount_for_raise": 100000,
     "company_name": "Eco Solutions",
     "location": "California, USA",
-    "timer": {
-      "start_date": "2024-07-01T00:00:00Z",
-      "end_date": "2024-08-01T00:00:00Z",
-      "ended": false
-    },
+    "timer": [
+      {
+        "start_date": "2024-07-01T00:00:00Z",
+        "end_date": "2024-08-01T00:00:00Z",
+        "ended": false
+      }
+    ],
     "status": "active"
   },
   {
@@ -24,11 +26,13 @@
     "amount_for_raise": 150000,
     "company_name": "Solar Innovators",
     "location": "Texas, USA",
-    "timer": {
-      "start_date": "2024-06-01T00:00:00Z",
-      "end_date": "2024-12-01T00:00:00Z",
-      "ended": false
-    },
+    "timer": [
+      {
+        "start_date": "2024-06-01T00:00:00Z",
+        "end_date": "2024-12-01T00:00:00Z",
+        "ended": false
+      }
+    ],
     "status": "active"
   },
   {
@@ -40,11 +44,13 @@
     "amount_for_raise": 50000,
     "company_name": "Marine Solutions",
     "location": "Florida, USA",
-    "timer": {
-      "start_date": "2024-01-01T00:00:00Z",
-      "end_date": "2024-07-01T00:00:00Z",
-      "ended": true
-    },
+    "timer": [
+      {
+        "start_date": "2024-01-01T00:00:00Z",
+        "end_date": "2024-07-01T00:00:00Z",
+        "ended": true
+      }
+    ],
     "status": "done"
   },
   {
@@ -56,11 +62,13 @@
     "amount_for_raise": 120000,
     "company_name": "City Greens",
     "location": "New York, USA",
-    "timer": {
-      "start_date": "2024-05-01T00:00:00Z",
-      "end_date": "2024-10-01T00:00:00Z",
-      "ended": false
-    },
+    "timer": [
+      {
+        "start_date": "2024-05-01T00:00:00Z",
+        "end_date": "2024-10-01T00:00:00Z",
+        "ended": false
+      }
+    ],
     "status": "active"
   },
   {
@@ -72,11 +80,13 @@
     "amount_for_raise": 200000,
     "company_name": "Tech Giants",
     "location": "California, USA",
-    "timer": {
-      "start_date": "2024-03-01T00:00:00Z",
-      "end_date": "2024-09-01T00:00:00Z",
-      "ended": false
-    },
+    "timer": [
+      {
+        "start_date": "2024-03-01T00:00:00Z",
+        "end_date": "2024-09-01T00:00:00Z",
+        "ended": false
+      }
+    ],
     "status": "active"
   },
   {
@@ -88,11 +98,13 @@
     "amount_for_raise": 80000,
     "company_name": "Renewables Inc.",
     "location": "Nevada, USA",
-    "timer": {
-      "start_date": "2024-04-01T00:00:00Z",
-      "end_date": "2024-07-01T00:00:00Z",
-      "ended": true
-    },
+    "timer": [
+      {
+        "start_date": "2024-04-01T00:00:00Z",
+        "end_date": "2024-07-01T00:00:00Z",
+        "ended": true
+      }
+    ],
     "status": "done"
   },
   {
@@ -104,11 +116,13 @@
     "amount_for_raise": 180000,
     "company_name": "Urban Solutions",
     "location": "Washington, USA",
-    "timer": {
-      "start_date": "2024-08-01T00:00:00Z",
-      "end_date": "2024-12-01T00:00:00Z",
-      "ended": false
-    },
+    "timer": [
+      {
+        "start_date": "2024-08-01T00:00:00Z",
+        "end_date": "2024-12-01T00:00:00Z",
+        "ended": false
+      }
+    ],
     "status": "upcoming"
   },
   {
@@ -120,11 +134,13 @@
     "amount_for_raise": 250000,
     "company_name": "Eco Protectors",
     "location": "Oregon, USA",
-    "timer": {
-      "start_date": "2023-10-01T00:00:00Z",
-      "end_date": "2024-05-01T00:00:00Z",
-      "ended": true
-    },
+    "timer": [
+      {
+        "start_date": "2023-10-01T00:00:00Z",
+        "end_date": "2024-05-01T00:00:00Z",
+        "ended": true
+      }
+    ],
     "status": "done"
   },
   {
@@ -136,11 +152,13 @@
     "amount_for_raise": 60000,
     "company_name": "Transport Future",
     "location": "California, USA",
-    "timer": {
-      "start_date": "2024-02-01T00:00:00Z",
-      "end_date": "2024-07-01T00:00:00Z",
-      "ended": true
-    },
+    "timer": [
+      {
+        "start_date": "2024-02-01T00:00:00Z",
+        "end_date": "2024-07-01T00:00:00Z",
+        "ended": true
+      }
+    ],
     "status": "done"
   },
   {
@@ -152,11 +170,13 @@
     "amount_for_raise": 100000,
     "company_name": "AgriGreen",
     "location": "Illinois, USA",
-    "timer": {
-      "start_date": "2024-06-01T00:00:00Z",
-      "end_date": "2024-12-01T00:00:00Z",
-      "ended": false
-    },
+    "timer": [
+      {
+        "start_date": "2024-06-01T00:00:00Z",
+        "end_date": "2024-12-01T00:00:00Z",
+        "ended": false
+      }
+    ],
     "status": "active"
   },
   {
@@ -168,11 +188,13 @@
     "amount_for_raise": 50000,
     "company_name": "Water Savers",
     "location": "Florida, USA",
-    "timer": {
-      "start_date": "2024-05-01T00:00:00Z",
-      "end_date": "2024-08-01T00:00:00Z",
-      "ended": false
-    },
+    "timer": [
+      {
+        "start_date": "2024-05-01T00:00:00Z",
+        "end_date": "2024-08-01T00:00:00Z",
+        "ended": false
+      }
+    ],
     "status": "active"
   },
   {
@@ -184,11 +206,13 @@
     "amount_for_raise": 120000,
     "company_name": "Build Green",
     "location": "Texas, USA",
-    "timer": {
-      "start_date": "2024-01-01T00:00:00Z",
-      "end_date": "2024-06-01T00:00:00Z",
-      "ended": true
-    },
+    "timer": [
+      {
+        "start_date": "2024-01-01T00:00:00Z",
+        "end_date": "2024-06-01T00:00:00Z",
+        "ended": true
+      }
+    ],
     "status": "done"
   },
   {
@@ -200,11 +224,13 @@
     "amount_for_raise": 160000,
     "company_name": "Energy Solutions",
     "location": "New York, USA",
-    "timer": {
-      "start_date": "2024-02-01T00:00:00Z",
-      "end_date": "2024-07-01T00:00:00Z",
-      "ended": true
-    },
+    "timer": [
+      {
+        "start_date": "2024-02-01T00:00:00Z",
+        "end_date": "2024-07-01T00:00:00Z",
+        "ended": true
+      }
+    ],
     "status": "done"
   },
   {
@@ -216,11 +242,13 @@
     "amount_for_raise": 70000,
     "company_name": "Pack Green",
     "location": "California, USA",
-    "timer": {
-      "start_date": "2024-03-01T00:00:00Z",
-      "end_date": "2024-08-01T00:00:00Z",
-      "ended": false
-    },
+    "timer": [
+      {
+        "start_date": "2024-03-01T00:00:00Z",
+        "end_date": "2024-08-01T00:00:00Z",
+        "ended": false
+      }
+    ],
     "status": "active"
   },
   {
@@ -232,11 +260,13 @@
     "amount_for_raise": 180000,
     "company_name": "Energy Grid",
     "location": "Washington, USA",
-    "timer": {
-      "start_date": "2024-06-01T00:00:00Z",
-      "end_date": "2024-11-01T00:00:00Z",
-      "ended": false
-    },
+    "timer": [
+      {
+        "start_date": "2024-06-01T00:00:00Z",
+        "end_date": "2024-11-01T00:00:00Z",
+        "ended": false
+      }
+    ],
     "status": "active"
   },
   {
@@ -248,11 +278,13 @@
     "amount_for_raise": 120000,
     "company_name": "BioProtect",
     "location": "Oregon, USA",
-    "timer": {
-      "start_date": "2024-06-01T00:00:00Z",
-      "end_date": "2024-12-01T00:00:00Z",
-      "ended": false
-    },
+    "timer": [
+      {
+        "start_date": "2024-06-01T00:00:00Z",
+        "end_date": "2024-12-01T00:00:00Z",
+        "ended": false
+      }
+    ],
     "status": "active"
   },
   {
@@ -264,11 +296,13 @@
     "amount_for_raise": 140000,
     "company_name": "Urban Green",
     "location": "New York, USA",
-    "timer": {
-      "start_date": "2024-07-01T00:00:00Z",
-      "end_date": "2025-01-01T00:00:00Z",
-      "ended": false
-    },
+    "timer": [
+      {
+        "start_date": "2024-07-01T00:00:00Z",
+        "end_date": "2025-01-01T00:00:00Z",
+        "ended": false
+      }
+    ],
     "status": "active"
   },
   {
@@ -280,11 +314,13 @@
     "amount_for_raise": 110000,
     "company_name": "Retrofit Solutions",
     "location": "California, USA",
-    "timer": {
-      "start_date": "2024-04-01T00:00:00Z",
-      "end_date": "2024-09-01T00:00:00Z",
-      "ended": true
-    },
+    "timer": [
+      {
+        "start_date": "2024-04-01T00:00:00Z",
+        "end_date": "2024-09-01T00:00:00Z",
+        "ended": true
+      }
+    ],
     "status": "done"
   },
   {
@@ -296,11 +332,13 @@
     "amount_for_raise": 150000,
     "company_name": "E-Mobility Inc.",
     "location": "Texas, USA",
-    "timer": {
-      "start_date": "2024-05-01T00:00:00Z",
-      "end_date": "2024-10-01T00:00:00Z",
-      "ended": false
-    },
+    "timer": [
+      {
+        "start_date": "2024-05-01T00:00:00Z",
+        "end_date": "2024-10-01T00:00:00Z",
+        "ended": false
+      }
+    ],
     "status": "active"
   },
   {
@@ -312,11 +350,13 @@
     "amount_for_raise": 50000,
     "company_name": "Water Solutions",
     "location": "Florida, USA",
-    "timer": {
-      "start_date": "2024-06-01T00:00:00Z",
-      "end_date": "2024-09-01T00:00:00Z",
-      "ended": false
-    },
+    "timer": [
+      {
+        "start_date": "2024-06-01T00:00:00Z",
+        "end_date": "2024-09-01T00:00:00Z",
+        "ended": false
+      }
+    ],
     "status": "active"
   }
 ]
