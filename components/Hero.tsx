@@ -1,10 +1,39 @@
 "use client";
-import React from "react";
+import {useEffect} from "react";
+import { useRouter } from 'next/navigation';
 import { motion } from "framer-motion";
 import { LampContainer } from "./ui/lamp";
 import Link from "next/link";
 
 export function Hero() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const handleUrlWithToken = () => {
+        const hash = window.location.hash; // Use hash to get URL fragment
+        console.log('URL hash:', hash); // Log hash to debug
+
+        if (hash) {
+            // Extract access_token from hash
+            const params = new URLSearchParams(hash.replace('#', ''));
+            const accessToken = params.get('access_token');
+            //console.log('Access token:', accessToken); // Log token to debug
+
+            if (accessToken) {
+                // Store token or use it as needed
+                localStorage.setItem('access_token', accessToken);
+                router.push('/');
+            } else {
+                console.warn('Access token not found in URL'); // Log warning if token is not found
+            }
+        } else {
+            console.warn('URL hash is empty'); // Log warning if hash is empty
+        }
+    };
+
+    handleUrlWithToken();
+}, [router]);
+
   return (
     <LampContainer>
       <motion.h1
@@ -30,3 +59,5 @@ export function Hero() {
     </LampContainer>
   );
 }
+
+
