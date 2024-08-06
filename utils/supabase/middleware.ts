@@ -10,7 +10,7 @@ export const updateSession = async (request: NextRequest) => {
       request: {
         headers: request.headers,
       },
-    }); 
+    });
 
     const supabase = createServerClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,

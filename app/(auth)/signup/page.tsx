@@ -21,17 +21,15 @@ export default function Signup({
       email,
       password,
       options: {
-        emailRedirectTo: `${origin}/api/auth/callback`,
+        emailRedirectTo: `${origin}/auth/callback`,
       },
     });
 
     if (error) {
-      console.log(error.message);
-
-      return redirect("/signup?message=Could not authenticate user");
+      return redirect("/login?message=Could not authenticate user");
     }
 
-    return redirect("/signup?message=Check email to continue sign in process");
+    return redirect("/login?message=Check email to continue sign in process");
   };
 
   return (
