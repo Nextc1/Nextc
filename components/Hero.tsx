@@ -1,11 +1,8 @@
 "use client";
-import {useEffect} from "react";
-import { useRouter } from 'next/navigation';
-import { motion } from "framer-motion";
-import { LampContainer } from "./ui/lamp";
-import Link from "next/link";
+import Image from "next/image";
 
 export function Hero() {
+<<<<<<< HEAD
   const router = useRouter();
 
   useEffect(() => {
@@ -34,30 +31,29 @@ export function Hero() {
     handleUrlWithToken();
 }, [router]);
 
+=======
+>>>>>>> ca79fe89d517854e65ac41849026700977914f0e
   return (
-    <LampContainer>
-      <motion.h1
-        initial={{ opacity: 0.5, y: 250 }}
-        whileInView={{ opacity: 1, y: 180 }}
-        transition={{
-          delay: 0.3,
-          duration: 0.8,
-          ease: "easeInOut",
-        }}
-        className="mt-8 bg-gradient-to-br from-slate-300 to-white py-4 bg-clip-text text-center text-2xl font-medium tracking-tight text-transparent md:text-4xl flex flex-col items-center justify-center gap-[5rem]"
-      >
-        Offset Your Carbon Footprint Today
-        <Link href="/projects">
-          <button className="relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
-            <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
-            <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl">
-              Explore Projects
-            </span>
+    <>
+      <div className="h-screen bg-white text-black flex flex-col-reverse pt-[40rem] md:pt-0 md:justify-center items-center md:flex-row">
+        <div className="w-full md:w-[50%] flex flex-col justify-start p-5 md:p-10 gap-4">
+          <h1 className="text-4xl font-bold">Empowering Your Green Future</h1>
+          <p className="text-2xl">
+            {" "}
+            Offset your carbon footprint with verified, impactful projects
+          </p>
+          <button className="md:w-[20rem]  px-6 py-2 bg-transparent border border-black text-black rounded-lg font-bold transform hover:-translate-y-1 transition duration-400">
+            Explore Projects
           </button>
-        </Link>
-      </motion.h1>
-    </LampContainer>
+        </div>
+        <div className="w-full md:w-[50%] p-5 md:p-10">
+          <img
+            src="\flat-design-carbon-neutral-illustration.png"
+            alt="hero-img"
+            className="w-full h-full"
+          />
+        </div>
+      </div>
+    </>
   );
 }
-
-

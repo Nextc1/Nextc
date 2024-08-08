@@ -66,15 +66,15 @@ const Projects: React.FC = () => {
 
   return (
     <>
-      <div className="w-full h-full bg-black text-white py-[5rem] px-[2rem]">
+      <div className="w-full h-full bg-white text-black py-[5rem] px-[2rem]">
         <div className="text-center my-10 text-4xl font-bold">
           Explore Projects
         </div>
         <div className="w-full my-[3rem] flex flex-row gap-4 justify-end">
-          <label className="input input-bordered flex items-center gap-2 bg-black border border-white w-full">
+          <label className="input input-bordered flex items-center gap-2 bg-white border border-black w-full">
             <input
               type="text"
-              className="text-white grow w-full"
+              className="text-black grow w-full"
               placeholder="Search"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -93,7 +93,7 @@ const Projects: React.FC = () => {
             </svg>
           </label>
           <select
-            className="select select-bordered w-[8rem] bg-black text-white border border-white outline-none"
+            className="w-[8rem] bg-white text-start text-black border border-black outline-black rounded-md"
             value={selectedStatus}
             onChange={(e) => setSelectedStatus(e.target.value)}
           >
@@ -108,7 +108,7 @@ const Projects: React.FC = () => {
             currentItems.map((project) => (
               <Link
                 href={`/projects/${project.id}`}
-                className="w-[350px] group relative block overflow-hidden rounded-lg shadow-lg transition duration-500 hover:shadow-xl text-white border border-white my-5"
+                className="w-[350px] group relative block overflow-hidden rounded-lg shadow-lg transition duration-500 hover:shadow-xl text-black border border-black my-5"
                 key={project.id}
               >
                 <img
@@ -117,8 +117,8 @@ const Projects: React.FC = () => {
                   className="h-64 w-full object-cover transition duration-500 group-hover:scale-105 sm:h-72"
                 />
 
-                <div className="relative bg-black p-6 text-white">
-                  <span className="whitespace-nowrap badge badge-secondary px-3 py-1.5 text-xs font-medium">
+                <div className="relative bg-white p-6 text-black">
+                  <span className="whitespace-nowrap bg-green-600 text-white rounded-md px-3 py-1.5 text-xs font-medium">
                     {project.status}
                   </span>
 

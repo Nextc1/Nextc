@@ -42,7 +42,7 @@ function ProjectId() {
 
   return (
     <>
-      <div className="w-full bg-black text-white py-[6rem] px-[2rem]">
+      <div className="w-full bg-white text-black py-[6rem] px-[2rem]">
         {projectData.map((project: ProjectData) => (
           <div className="flex flex-row p-10" key={project.id}>
             <div className="w-[60%] p-10">
@@ -70,7 +70,9 @@ function ProjectId() {
                   />
                 ))}
               </p>
-              <div className="badge badge-secondary">{project.status}</div>
+              <div className="bg-green-600 text-white rounded-md text-center w-[5rem] p-2 text-xs font-medium">
+                {project.status}
+              </div>
             </div>
           </div>
         ))}

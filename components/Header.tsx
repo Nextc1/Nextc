@@ -56,7 +56,7 @@ const Header = ({ className }: { className?: string }) => {
   };
 
   return (
-    <div className="navbar bg-black flex">
+    <div className="navbar bg-white flex text-black">
       <div
         className={cn(
           "fixed top-10 inset-x-0 max-w-xl mx-auto z-50",
@@ -64,18 +64,29 @@ const Header = ({ className }: { className?: string }) => {
         )}
       >
         <Menu setActive={setActive}>
-          <Link href="/">Home</Link>
+          <Link href="/" className="text-black">
+            Home
+          </Link>
           {isSignedIn ? (
             <>
-              <Link href="/profile">Profile</Link>
-              <p className="cursor-pointer" onClick={handleLogout}>
+              <Link href="/projects" className="text-black">
+                Projects
+              </Link>
+              <Link href="/profile" className="text-black">
+                Profile
+              </Link>
+              <p className="cursor-pointer text-black" onClick={handleLogout}>
                 Logout
               </p>
             </>
           ) : (
             <>
-              <Link href="/api/auth/signin">Sign In</Link>
-              <Link href="/api/auth/signup">Sign Up</Link>
+              <Link href="/api/auth/signin" className="text-black">
+                Sign In
+              </Link>
+              <Link href="/api/auth/signup" className="text-black">
+                Sign Up
+              </Link>
             </>
           )}
         </Menu>
