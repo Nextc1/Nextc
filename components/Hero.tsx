@@ -10,8 +10,8 @@ export function Hero() {
 
   useEffect(() => {
     const handleUrlWithToken = () => {
-        const hash = window.location.hash; // Use hash to get URL fragment
-        console.log('URL hash:', hash); // Log hash to debug
+        const hash = window.location.hash; 
+        console.log('URL hash:', hash);
 
         if (hash) {
             // Extract access_token from hash
