@@ -2,6 +2,37 @@
 import Image from "next/image";
 
 export function Hero() {
+<<<<<<< HEAD
+  const router = useRouter();
+
+  useEffect(() => {
+    const handleUrlWithToken = () => {
+        const hash = window.location.hash; 
+        console.log('URL hash:', hash);
+
+        if (hash) {
+            // Extract access_token from hash
+            const params = new URLSearchParams(hash.replace('#', ''));
+            const accessToken = params.get('access_token');
+            //console.log('Access token:', accessToken); // Log token to debug
+
+            if (accessToken) {
+                // Store token or use it as needed
+                localStorage.setItem('access_token', accessToken);
+                router.push('/');
+            } else {
+                console.warn('Access token not found in URL'); // Log warning if token is not found
+            }
+        } else {
+            console.warn('URL hash is empty'); // Log warning if hash is empty
+        }
+    };
+
+    handleUrlWithToken();
+}, [router]);
+
+=======
+>>>>>>> ca79fe89d517854e65ac41849026700977914f0e
   return (
     <>
       <div className="h-screen bg-white text-black flex flex-col-reverse pt-[40rem] md:pt-0 md:justify-center items-center md:flex-row">
